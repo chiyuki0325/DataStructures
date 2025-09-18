@@ -1,8 +1,13 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
+class Solution1:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        # Python 列表耍赖法
+        vals = []
+        while head is not None:
+            vals.append(head.val)
+            head = head.next
+        return vals == vals[::-1]
+
+
 class Solution:
     def isPalindrome(self, head: Optional[ListNode]) -> bool:
         a, b = head, head
@@ -12,6 +17,7 @@ class Solution:
 
         # 此时a 是中点，b是以巴
 
+        # 翻转后半部分链表
         pre = None
         b = None
         while a is not None:
