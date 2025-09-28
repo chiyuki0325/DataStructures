@@ -1,4 +1,5 @@
 class Solution:
+    # 以前写的，有点屎山
     def merge(self, left: Optional[ListNode], right: Optional[ListNode]):
         # 由于传入的left和right一定是sortList后的结果，所以一定有序
         # 逐个插入后，即为排序好的合并链表
