@@ -28,24 +28,19 @@ class MaxHeap:
     def swap(self, a: Index, b: Index):
         self.arr[a], self.arr[b] = self.arr[b], self.arr[a]
 
+    def size(self) -> int:
+        return len(self.arr)
+
     def max_child(self, i: Index) -> Index:
         l = self.left(i)
         r = self.right(i)
 
-        bound = len(self.arr) - 1
-        l_out = l > bound
-        r_out = r > bound
-        if l_out and r_out:
+        if l >= self.size():
             return -1
-        elif l_out:
-            return r
-        elif r_out:
-            return l
-
-        if self.arr[l] > self.arr[r]:
+        elif r >= self.size():
             return l
         else:
-            return r
+            return l if self.arr[l] > self.arr[r] else r
 
     # 堆基本操作
 
@@ -61,7 +56,7 @@ class MaxHeap:
     def float_up(self, i: Index = -1):
         # 使过大的元素上浮使之恢复堆序性
         if i == -1:
-            i = len(self.arr) - 1
+            i = self.size() - 1
         while True:
             pa = self.parent(i)
             if pa < 0 or self.arr[pa] >= self.arr[i]:
@@ -84,7 +79,7 @@ class MaxHeap:
         if not self.arr:
             return None
 
-        self.swap(0, len(self.arr) - 1)
+        self.swap(0, self.size() - 1)
         result = self.arr.pop()
         self.sink_down(0)
         return result
