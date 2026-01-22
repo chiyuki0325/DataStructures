@@ -30,12 +30,28 @@ class Solution:
             """
 
             # 消元，移项
-            if nums[i-1] >= 0:
-                nums[i] += nums[i-1]
+            if nums[i - 1] >= 0:
+                nums[i] += nums[i - 1]
 
             result = max(result, nums[i])
 
         return result
+
+
+from itertools import accumulate
+
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        pfx = accumulate(nums)
+        max_sum = max(nums)
+        min_pfx = 0
+
+        for pfx_i in pfx:
+            max_sum = max(max_sum, pfx_i - min_pfx)
+            min_pfx = min(min_pfx, pfx_i)
+
+        return max_sum
 
 
 if __name__ == "__main__":
