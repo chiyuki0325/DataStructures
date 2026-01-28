@@ -35,7 +35,7 @@ class Solution:
             node = group_prev
 
             # 翻转当前组
-            # group_prev -> [group] -> group_next
+            # group_prev -> reversed[group] -> group_next
 
             for cursor in reversed(group):
                 node.next = cursor
@@ -59,7 +59,6 @@ class Solution:
         looping = True
 
         while looping:
-
             # 派一个指针去前方打探敌情
             # 如果到头了就 looping=False
             pioneer = group_prev
